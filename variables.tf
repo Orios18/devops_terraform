@@ -23,10 +23,14 @@ variable "vpc_id" {
   
 }
 
-variable "availability_zone" {
+variable "availability_zone_a" {
     type = string
     default = "eu-west-1a"
-  
+}
+
+variable "availability_zone_b" {
+    type = string
+    default = "eu-west-1b"
 }
 
 variable "ori_subnet_1_id" {  
@@ -38,7 +42,7 @@ variable "ori_subnet_1_id" {
 variable "ori_subnet_2_id" {  
   description = "ori_subnet_2_id"  
   type        = string  
-  default     = "subnet-009d096fde49a59b1"  
+  default     = "subnet-02bd7e5d922fd1897"  
 } 
 
 variable "nat_gateway_id" {  
@@ -52,3 +56,16 @@ variable "cidr_block" {
     default = "0.0.0.0/0"
   
 }
+
+variable "cluster_name" {
+  type = string
+  default = "ori_cluster"
+}
+
+variable "cluster_version" {
+  type = string
+  default = "1.29"
+  
+}
+
+
