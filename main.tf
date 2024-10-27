@@ -51,9 +51,10 @@ module "eks" {
 
   cluster_addons = {
     coredns                = {}
-    eks-pod-identity-agent = {}
-    kube-proxy             = {}
-    vpc-cni                = {}
+    eks-pod-identity-agent = {addon_version = "v1.3.2-eksbuild.2"}
+    kube-proxy             = {addon_version = "v1.29.0-eksbuild.1"}
+    vpc-cni                = {addon_version = "v1.16.0-eksbuild.1"}
+    aws-ebs-csi-driver     = {addon_version = "v1.35.0-eksbuild.1"}
   }
 
   vpc_id                   = var.vpc_id
@@ -62,15 +63,14 @@ module "eks" {
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    instance_types = "t2.micro"
-    Name = "ori-nodegroup"
+    instance_types = "t2.small"
   }
 
   eks_managed_node_groups = {
-    example = {
+    ori-nodegroup = {
       # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       ami_type       = "AL2023_x86_64_STANDARD"
-      instance_types = ["t2.micro"]
+      instance_types = ["t2.small"]
 
       min_size     = 2
       max_size     = 10
