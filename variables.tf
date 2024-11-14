@@ -36,13 +36,13 @@ variable "availability_zone_b" {
 variable "ori_subnet_1_id" {  
   description = "ori_subnet_1_id"  
   type        = string  
-  default     = "subnet-0dbaedc9c797f8dd8"  
+  default     = "subnet-085e227e5da300467"  
 } 
 
 variable "ori_subnet_2_id" {  
   description = "ori_subnet_2_id"  
   type        = string  
-  default     = "subnet-02bd7e5d922fd1897"  
+  default     = "subnet-089c508c288f7290e"  
 } 
 
 variable "nat_gateway_id" {  
@@ -59,7 +59,7 @@ variable "cidr_block" {
 
 variable "cluster_name" {
   type = string
-  default = "ori_cluster"
+  default = "ori-cluster"
 }
 
 variable "cluster_version" {
@@ -68,4 +68,8 @@ variable "cluster_version" {
   
 }
 
+variable "lb_arn" {
+  type = string
+  default = "arn:aws:elasticloadbalancing:eu-west-1:730335218716:loadbalancer/net/a8a34a7b299e543cd9e43bb111938a93/96cec55f85f7d196"
+}
 

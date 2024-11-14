@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ori-2048  
+  namespace: 2048-app
+  annotations: 
+    service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-02b03655a76056bcd"
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+
+    
+spec:
+  selector:
+    app: 2048-ws
+  ports:
+
+    - protocol: TCP
+      port: 80  
+      targetPort: 80
+  type: LoadBalancer

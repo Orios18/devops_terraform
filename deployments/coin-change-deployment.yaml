@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coin-change-calc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coin-change-calc
+  template:
+    metadata:
+      labels:
+        app: coin-change-calc
+    spec:
+      containers:
+      - name: coin-change-calc
+        image: orios18/coin-change-calc:latest
+        ports:
+        - containerPort: 3000  # Container is running on port 3000

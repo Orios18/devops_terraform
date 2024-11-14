@@ -90,3 +90,16 @@ module "eks" {
   }
 }
 
+
+resource "aws_route53_record" "ori" {
+  zone_id = "Z00269823B8KU0UBQVXPI"  
+  name    = "ori"  
+  type    = "A"    
+
+  alias {
+    name                   = "a8a34a7b299e543cd9e43bb111938a93-96cec55f85f7d196.elb.eu-west-1.amazonaws.com"  
+    zone_id                = "Z2IFOLAFXWLO4F"  
+    evaluate_target_health = true 
+  }
+}
+
