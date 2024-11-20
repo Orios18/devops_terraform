@@ -40,7 +40,8 @@ resource "aws_route_table_association" "ori_2" {
   route_table_id = aws_route_table.ori_rtb.id
 }
 
-module "eks" {
+# cluster module
+module "eks" { 
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
 
@@ -61,7 +62,7 @@ module "eks" {
   subnet_ids               = [var.ori_subnet_1_id, var.ori_subnet_2_id]
   control_plane_subnet_ids = [var.ori_subnet_1_id, var.ori_subnet_2_id]
 
-  # EKS Managed Node Group(s)
+  # EKS managed Node Group(s)
   eks_managed_node_group_defaults = {
     instance_types = "t2.small"
   }
@@ -78,8 +79,6 @@ module "eks" {
     }
   }
 
-  # Cluster access entry
-  # To add the current caller identity as an administrator
   enable_cluster_creator_admin_permissions = true
 
   
@@ -90,16 +89,11 @@ module "eks" {
   }
 }
 
-
-resource "aws_route53_record" "ori" {
-  zone_id = "Z00269823B8KU0UBQVXPI"  
-  name    = "ori"  
-  type    = "A"    
-
-  alias {
-    name                   = "a8a34a7b299e543cd9e43bb111938a93-96cec55f85f7d196.elb.eu-west-1.amazonaws.com"  
-    zone_id                = "Z2IFOLAFXWLO4F"  
-    evaluate_target_health = true 
-  }
+#route 53 record
+resource "aws_route53_record" "ori_load_balancer_dns" {
+  zone_id = var.zone_id
+  name    = "ori.wix-devops-workshop.com"
+  type    = "CNAME"
+  ttl     = 300
+  records = [var.lb_dns]
 }
-

@@ -28,6 +28,11 @@ variable "availability_zone_a" {
     default = "eu-west-1a"
 }
 
+variable "region" {
+  type = string
+  default = "eu-west-1"
+}
+
 variable "availability_zone_b" {
     type = string
     default = "eu-west-1b"
@@ -36,13 +41,13 @@ variable "availability_zone_b" {
 variable "ori_subnet_1_id" {  
   description = "ori_subnet_1_id"  
   type        = string  
-  default     = "subnet-085e227e5da300467"  
+  default     = "subnet-02e116f1ba95ac183"  
 } 
 
 variable "ori_subnet_2_id" {  
   description = "ori_subnet_2_id"  
   type        = string  
-  default     = "subnet-089c508c288f7290e"  
+  default     = "subnet-08dc0a2b529fdb7e7"  
 } 
 
 variable "nat_gateway_id" {  
@@ -68,8 +73,14 @@ variable "cluster_version" {
   
 }
 
-variable "lb_arn" {
+variable "lb_dns" {
   type = string
-  default = "arn:aws:elasticloadbalancing:eu-west-1:730335218716:loadbalancer/net/a8a34a7b299e543cd9e43bb111938a93/96cec55f85f7d196"
+  default = "aa966a94564c843319f9aa3709a2267c-bd0a1494e9014f67.elb.eu-west-1.amazonaws.com"
 }
+
+variable "zone_id" {
+  type = string
+  default = "Z00269823B8KU0UBQVXPI"
+}
+
 
